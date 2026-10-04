@@ -57,3 +57,10 @@ Returns the number of physical nodes currently on the ring.
 ### `ring.getNodesList()`
 
 Returns a copy of the current node identifiers.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
